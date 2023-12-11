@@ -2,9 +2,9 @@
 <template>
   <div id="app" class="small-container">
     <h1>Employees</h1>
-
+    <!-- @ tells to perform an action when an event occurs -->
     <employee-form @add:employee="addEmployee" />
-    <employee-table :employees="employees" />
+    <employee-table :employees="employees" @delete:employee="deleteEmployee" />
   </div>
 </template>
 
@@ -47,6 +47,9 @@ export default {
       const newEmployee = { ...employee, id };
       // retrieves event from child which is in EmployeeForm in this case
       this.employees = [...this.employees, newEmployee];
+    },
+    deleteEmployee(id) {
+      this.employees = this.employees.filter((employee) => employee.id !== id);
     },
   },
 };
